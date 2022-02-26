@@ -1,6 +1,7 @@
-const path = require('path');
+import * as path from 'path';
+import webpack from 'webpack';
 
-module.exports = {
+const commonConfiguration: webpack.Configuration = {
   entry: {
     main: './src/index.tsx',
   },
@@ -27,6 +28,10 @@ module.exports = {
         test: /\.(css|scss)$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.(jpg|jpeg|gif|png)$/,
+        use: { loader: 'file-loader' },
+      }
     ],
   },
   output: {
@@ -34,3 +39,5 @@ module.exports = {
     filename: '[name].[contenthash].bundle.js',
   },
 };
+
+export default commonConfiguration;
